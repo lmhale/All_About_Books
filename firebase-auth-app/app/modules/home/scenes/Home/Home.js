@@ -1,5 +1,5 @@
 import React from 'react';
-var { View, StyleSheet, Alert, Text } = require('react-native');
+var { View, StyleSheet, Alert, Text, TouchableOpacity } = require('react-native');
 
 import {Button} from 'react-native-elements'
 import {Actions} from 'react-native-router-flux';
@@ -31,8 +31,12 @@ class Home extends React.Component {
     onError(error) {
         Alert.alert('Oops!', error.message);
     }
+    goToSearch(){
+       Actions.Search()
+    }
 
     render() {
+
         return (
             <View style={styles.container}>
                 <Button
@@ -43,7 +47,9 @@ class Home extends React.Component {
                     buttonStyle={[styles.button]}
                     textStyle={styles.buttonText}
                     onPress={this.onSignOut}/>
-            <Text> HI! </Text>
+            <TouchableOpacity style = {{ margin: 128 }} onPress ={this.goToSearch}>
+            <Text>Go to Search</Text>
+            </TouchableOpacity>
             </View>
         );
     }

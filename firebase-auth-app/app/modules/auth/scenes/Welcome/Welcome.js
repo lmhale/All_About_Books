@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, Image} from 'react-native';
+import {Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 
 import {Button, SocialIcon, Divider} from 'react-native-elements'
 import {Actions} from 'react-native-router-flux'
@@ -46,13 +46,16 @@ class Welcome extends React.Component {
 
     render() {
         return (
+
                 <View style={styles.container}>
+
                     <View style={styles.topContainer}>
-                        <Image style={styles.image} source={{uri: ""}}/>
+                        <Image style={styles.image} source={require('./bookstack.jpeg')}/>
                         <Text style={styles.title}>All About Books</Text>
                     </View>
 
                     <View style={styles.bottomContainer}>
+                    <ScrollView>
                         <View style={[styles.buttonContainer]}>
                             <SocialIcon
                                 raised
@@ -91,9 +94,11 @@ class Welcome extends React.Component {
                                 </Text>
                             </TouchableOpacity>
                         </View>
+                        </ScrollView>
                     </View>
 
                 </View>
+
         );
     }
 }
