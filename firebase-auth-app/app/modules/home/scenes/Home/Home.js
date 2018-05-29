@@ -1,5 +1,5 @@
 import React from 'react';
-var { View, StyleSheet, Alert } = require('react-native');
+var { View, StyleSheet, Alert, Text } = require('react-native');
 
 import {Button} from 'react-native-elements'
 import {Actions} from 'react-native-router-flux';
@@ -43,6 +43,7 @@ class Home extends React.Component {
                     buttonStyle={[styles.button]}
                     textStyle={styles.buttonText}
                     onPress={this.onSignOut}/>
+            <Text> HI! </Text>
             </View>
         );
     }

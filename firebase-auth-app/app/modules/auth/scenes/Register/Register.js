@@ -15,7 +15,7 @@ const fields = [
         placeholder: "Email Address",
         autoFocus: false,
         secureTextEntry: false,
-        value: "test1@eandmdigital.com",
+        value: "",
         type: "email"
     },
     {
@@ -24,7 +24,7 @@ const fields = [
         placeholder: "Username",
         autoFocus: false,
         secureTextEntry: false,
-        value: "mosesesan",
+        value: "",
         type: "text"
     },
     {
