@@ -8,28 +8,50 @@ import {
   TouchableOpacity
 } from 'react-native';
 import Proptypes from 'prop-types';
-
+import ajax from './ajax';
 
 class BookDetail extends React.Component {
   static propTypes = {
-    books: Proptypes.object.isRequired,
-    onPress: Proptypes.func.isRequired,
+    initalBookData:Proptypes.object.isRequired,
   };
-  handlePress = () => {
-    this.props.onPress(this.props.book.id);
-  };
+  state = {
+    book: this.props.initalBookData,
+  }
+  async componentDidMount(){
+    const fullBook = await ajax.fetchBookDetail(this.state.book.id)
+     console.log(fullDeal);
+     this.setState({
+       book: fullBook,
+       onBack: Proptypes.func.isRequired,
+     })
+  }
+
   render() {
     const book = this.props.book;
     return (
-      <TouchableOpacity style={styles.book} onPress={this.handlePress}>
-        
-          <View style={styles.info}>
-           <Text>{book.volumeInfo.title}</Text>
-            <Text>{book.volumeInfo.authors}</Text>
-            <Text>{book.volumeInfo.averageRating}</Text>
-          </View>
-     
+      <View style={styles.book} >
+      <TouchableOpacity onPress={this.props.onBack}>
+      <Text> Back </Text>
       </TouchableOpacity>
+      <View>
+<Image style={styles.image} source={{uri: book.volumeInfo.imageLinks.thumbnail}} />
+      </View>
+         <View style={styles.info}>
+           <Text>{book.volumeInfo.title}</Text>
+           <Text>{book.volumeInfo.description}</Text>
+
+            
+          </View>
+        {book.imageLinks && (
+      <View>
+      
+      </View>
+      )}
+     <View>
+    <Text>{book.description}</Text>
+     </View>
+
+      </View>
 
     );
   }
@@ -42,9 +64,10 @@ const styles = StyleSheet.create({
     textAlign:'center',
   },
   image: {
-    width: '100%',
+    width: 120,
     height: 150,
     backgroundColor: '#ccc',
+    margin:20,
   },
   info: {
     padding: 10,
@@ -52,8 +75,8 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     borderWidth: 1,
     borderTopWidth: 0,
-    width:250,
-    height:200,
+    width:'100%',
+    height:350,
    
   },
   title: {

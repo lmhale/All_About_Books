@@ -15,9 +15,9 @@ async fetchInitialBooks(){
 
 },
 
-    async fetchDealBooks(BookId){
+    async fetchBookDetail(bookId){
       try {
-        const response = await fetch(singleBook + BookId);
+        const response = await fetch(singleBook + bookId);
         const responseJson = await response.json();
         return responseJson;
 

@@ -37,6 +37,12 @@ export default class Search extends React.Component {
         });
 
       }
+      unsetCurrentBook = () => {
+        this.setState({ 
+          currentBookId: null,
+        });
+
+      }
      currentBook = () => {
        return this.state.books.find(
          (book) => book.id === this.state.currentBookId
@@ -46,7 +52,7 @@ export default class Search extends React.Component {
 
     render() {
        if(this.state.currentBookId){
-        return <BookDetail book={this.currentBook()} />
+        return <BookDetail book={this.currentBook()} onBack={this.unsetCurrentBook}/>
        }
        if (this.state.books.length > 0){
        return <BookList books={this.state.books} onItemPress={this.setCurrentBook}/>
