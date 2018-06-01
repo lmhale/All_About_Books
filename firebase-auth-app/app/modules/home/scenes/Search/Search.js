@@ -1,73 +1,70 @@
 import React from 'react';
 import {
   Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  FlatList
+
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
+import BookList from './BookList';
+import ajax from './ajax';
+import BookDetail from './BookDetail';
 
 
 
-
-export default class HomeScreen extends React.Component {
+export default class Search extends React.Component {
   state = {
 
-     items:[]
+     books:[],
+     currentBookId:null,
   };
 
-getAllBooks(){
-  fetch('https://www.googleapis.com/books/v1/volumes?q=wild')
-    .then(data => {
-      return data.json()
-    })
-    .then(books=> {
-      this.setState({
-        items: books.items
+  async componentDidMount() {
+       const books = await ajax.fetchInitialBooks();
+       this.setState({books});
 
-      })
-      console.log(books.items);
-    })
+         console.log(books);
 
-  }
-  componentWillMount() {
-   this.getAllBooks()
- }
+     }
 
+       setCurrentBook = (bookId) => {
+        this.setState({ 
+          currentBookId: bookId 
+        });
 
-    WholeNews() {
-      return this.state.items.map(function(news, i){
-        return(
-          <View key={i}>
-      <Text>{news.volumeInfo.title} </Text>
-      <Text> Author: {news.volumeInfo.authors}</Text>
-      <Text> Rating: {news.volumeInfo.averageRating}</Text>
-
-            </View>
-      
-
-
+      }
+     currentBook = () => {
+       return this.state.books.find(
+         (book) => book.id === this.state.currentBookId
         );
-      });
+     }
+
+
+    render() {
+       if(this.state.currentBookId){
+        return <BookDetail book={this.currentBook()} />
+       }
+       if (this.state.books.length > 0){
+       return <BookList books={this.state.books} onItemPress={this.setCurrentBook}/>
+        
+       }
+      return (
+        <View style={styles.container}>
+       
+        <Text style={styles.header}>BookApp</Text>
+   
+        </View>
+
+
+      );
     }
-
-  render() {
-
-    return (
-      <View style={styles.container}>
-     {this.WholeNews()}
-
-      </View>
-    );
   }
 
 
-}
 
 const styles = StyleSheet.create({
   container: {
