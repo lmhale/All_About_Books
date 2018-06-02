@@ -19,7 +19,7 @@ class BookDetail extends React.Component {
   }
   async componentDidMount(){
     const fullBook = await ajax.fetchBookDetail(this.state.book.id)
-     console.log(fullDeal);
+     console.log(fullBook);
      this.setState({
        book: fullBook,
        onBack: Proptypes.func.isRequired,
@@ -40,11 +40,11 @@ class BookDetail extends React.Component {
            <Text>{book.volumeInfo.title}</Text>
            <Text>{book.volumeInfo.description}</Text>
 
-            
+
           </View>
         {book.imageLinks && (
       <View>
-      
+
       </View>
       )}
      <View>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     width:'100%',
     height:350,
-   
+
   },
   title: {
     fontSize: 16,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   cause: {
     flex: 2,
   },
-  
+
 });
 
 

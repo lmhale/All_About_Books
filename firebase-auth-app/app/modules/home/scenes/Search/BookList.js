@@ -3,6 +3,7 @@ import {
   Platform,
   StyleSheet,
   View,
+  Text,
   FlatList
 } from 'react-native';
 import Proptypes from 'prop-types';
@@ -15,15 +16,21 @@ class BookList extends React.Component {
   }
 
   render() {
+
     return (
-      <View style={styles.list}>
-        <FlatList
-          data={this.props.books}
-          renderItem={({item}) => (
-          <BookItem book={item}  onPress={this.props.onItemPress}/>
-          )}
-        />
-      </View>
+     <View>
+            {
+                this.props.books.map((b, i) => {
+
+                    return (
+
+                        <View>
+
+                       <BookItem book={b}  onPress={this.props.onItemPress}/>
+                       </View>
+                    );
+                })
+            }</View>
 
     );
   }

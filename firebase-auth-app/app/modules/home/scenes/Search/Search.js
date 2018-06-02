@@ -28,7 +28,7 @@ constructor(props){
     super(props);
 this.state = {
 
-     books:[],
+     theBooks:[],
      currentBookId:null,
      query : '',
       info : [],
@@ -53,7 +53,7 @@ this.state = {
 
         this.setState({
           isLoading: false,
-        info: responseJson.items,
+        theBooks: responseJson.items,
         }, function(){
 
         });
@@ -76,13 +76,13 @@ handleInput = (text) => {
    }
 
 
-  async componentDidMount() {
-       const books = await ajax.fetchInitialBooks();
-       this.setState({books});
+  // async componentDidMount() {
+  //      const books = await ajax.fetchInitialBooks();
+  //      this.setState({books});
 
-         console.log(books);
+  //        console.log(books);
 
-     }
+  //    }
 
        setCurrentBook = (bookId) => {
         this.setState({
@@ -97,7 +97,7 @@ handleInput = (text) => {
 
       }
      currentBook = () => {
-       return this.state.books.find(
+       return this.state.theBooks.find(
          (book) => book.id === this.state.currentBookId
         );
      }
@@ -121,7 +121,7 @@ handleInput = (text) => {
                <Text> Submit </Text>
             </TouchableOpacity>
 
- <Gallery info={this.state.info} />
+ <BookList books={this.state.theBooks} onItemPress={this.setCurrentBook}/>
 
 
 </View>
