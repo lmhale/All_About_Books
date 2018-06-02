@@ -6,8 +6,15 @@ import {
   Text,
   TouchableOpacity,
   View,
+  TextInput,
+  Button
+
 
 } from 'react-native';
+
+import Gallery from './Gallery.js';
+import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+
 import { WebBrowser } from 'expo';
 
 import BookList from './BookList';
@@ -17,11 +24,57 @@ import BookDetail from './BookDetail';
 
 
 export default class Search extends React.Component {
-  state = {
+constructor(props){
+    super(props);
+this.state = {
 
      books:[],
      currentBookId:null,
-  };
+     query : '',
+      info : [],
+  }
+
+  this.search=this.search.bind(this)
+  this.handleChange = this.handleChange.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
+  }
+  handleKeyPress(event){
+    if(event.key ==='Enter')
+    this.search();
+
+  }
+
+  search(){
+    let query = this.state.query;
+    let call = 'https://www.googleapis.com/books/v1/volumes?q='
+    return fetch(call + query)
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+        info: responseJson.items,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
+
+  handleChange(e){
+    this.setState({
+       query: e.target.value
+    })
+  }
+
+handleInput = (text) => {
+      this.setState({ query: text })
+   }
+
 
   async componentDidMount() {
        const books = await ajax.fetchInitialBooks();
@@ -32,13 +85,13 @@ export default class Search extends React.Component {
      }
 
        setCurrentBook = (bookId) => {
-        this.setState({ 
-          currentBookId: bookId 
+        this.setState({
+          currentBookId: bookId
         });
 
       }
       unsetCurrentBook = () => {
-        this.setState({ 
+        this.setState({
           currentBookId: null,
         });
 
@@ -51,19 +104,28 @@ export default class Search extends React.Component {
 
 
     render() {
-       if(this.state.currentBookId){
+ if(this.state.currentBookId){
         return <BookDetail book={this.currentBook()} onBack={this.unsetCurrentBook}/>
        }
-       if (this.state.books.length > 0){
-       return <BookList books={this.state.books} onItemPress={this.setCurrentBook}/>
-        
-       }
+
       return (
-        <View style={styles.container}>
-       
-        <Text style={styles.header}>BookApp</Text>
-   
-        </View>
+
+     <View>
+
+     <TextInput type="text" placeholder="Search for a book" onChange={this.handleChange}
+    onChangeText = {this.handleInput} onKeyPress={this.handleKeyPress} value={this.state.query} name="query"/>
+
+    <TouchableOpacity
+
+               onPress ={this.search}>
+               <Text> Submit </Text>
+            </TouchableOpacity>
+
+ <Gallery info={this.state.info} />
+
+
+</View>
+
 
 
       );
