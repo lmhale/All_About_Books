@@ -7,10 +7,13 @@ const resizeMode = 'contain';
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
+        flex:1,
+
+        backgroundColor:"#00cc99",
     },
 
     bottomContainer:{
+
         backgroundColor:"white",
         paddingVertical: padding * 3,
         shadowColor: "#000000",
@@ -23,9 +26,15 @@ const styles = StyleSheet.create({
     },
 
     buttonContainer:{
+
         justifyContent:"center",
-        alignItems:"center"
-    }
+        alignItems:"center",
+    },
+
+    logoutButton: {
+      marginTop:150,
+      width:70,
+    },
 });
 
 export default styles;

@@ -44,7 +44,7 @@ class Home extends React.Component {
                     borderRadius={4}
                     title={'LOG OUT'}
                     containerViewStyle={[styles.containerView]}
-                    buttonStyle={[styles.button]}
+                    style={styles.logoutButton}
                     textStyle={styles.buttonText}
                     onPress={this.onSignOut}/>
             <TouchableOpacity style = {{ margin: 128 }} onPress ={this.goToSearch}>

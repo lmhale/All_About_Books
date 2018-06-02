@@ -110,15 +110,15 @@ handleInput = (text) => {
 
       return (
 
-     <View>
+     <View style={styles.form}>
 
-     <TextInput type="text" placeholder="Search for a book" onChange={this.handleChange}
+     <TextInput style={styles.field} type="text" placeholder="Search for a book" onChange={this.handleChange}
     onChangeText = {this.handleInput} onKeyPress={this.handleKeyPress} value={this.state.query} name="query"/>
 
     <TouchableOpacity
-
+               style={styles.button}
                onPress ={this.search}>
-               <Text> Submit </Text>
+               <Text style={styles.buttonText}> Submit </Text>
             </TouchableOpacity>
 
  <BookList books={this.state.theBooks} onItemPress={this.setCurrentBook}/>
@@ -138,8 +138,42 @@ const styles = StyleSheet.create({
   container: {
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
+      textAlign: 'center',
       backgroundColor: 'grey',
+
+    },
+    form: {
+
+      justifyContent:"center",
+      alignItems:"center"
+    },
+    field: {
+
+      width:200,
+      height:40,
+      borderBottomColor:'#83B5C7',
+      borderBottomWidth:2,
+      borderTopColor:'#83B5C7',
+      borderTopWidth:2,
+      borderLeftColor:'#83B5C7',
+      borderLeftWidth:2,
+      borderRightColor:'#83B5C7',
+      borderRightWidth:2,
+      textAlign:'center',
+    },
+
+    button: {
+    backgroundColor:'green',
+    width:58,
+    height:20,
+
+    textAlign:'center',
+    borderRadius:10,
+     padding:2,
+    },
+    buttonText: {
+     color: 'white',
+
     },
     image: {
    width: '100%',

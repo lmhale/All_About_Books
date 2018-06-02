@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+
   StyleSheet,
   View,
   FlatList,
@@ -22,13 +23,13 @@ class BookItem extends React.Component {
     const book = this.props.book;
     return (
       <TouchableOpacity style={styles.book} onPress={this.handlePress}>
-        
+
           <View style={styles.info}>
            <Text>{book.volumeInfo.title}</Text>
             <Text>{book.volumeInfo.authors}</Text>
             <Text>{book.volumeInfo.averageRating}</Text>
           </View>
-     
+
       </TouchableOpacity>
 
     );
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     width:250,
     height:200,
-   
+
   },
   title: {
     fontSize: 16,
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   cause: {
     flex: 2,
   },
-  
+
 });
 
 
