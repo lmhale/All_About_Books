@@ -4,7 +4,9 @@ import {
   StyleSheet,
   View,
   Text,
-  FlatList
+  FlatList,
+  ScrollView,
+  ImageBackground
 } from 'react-native';
 import Proptypes from 'prop-types';
 import BookItem from './BookItem'
@@ -18,27 +20,37 @@ class BookList extends React.Component {
   render() {
 
     return (
-     <View>
+
+ <ImageBackground source={require('./books.jpg')} style={styles.pic}>
+<ScrollView>
             {
+
                 this.props.books.map((b, i) => {
 
                     return (
 
-                        <View>
 
                        <BookItem book={b}  onPress={this.props.onItemPress}/>
-                       </View>
+
+
                     );
                 })
-            }</View>
+
+            }   </ScrollView>
+
+            </ImageBackground>
 
     );
   }
 }
 const styles = StyleSheet.create({
+  pic: {
+   width:'100%',
+  },
   list: {
     backgroundColor: '#eee',
     width: '100%',
   },
+
 });
 export default BookList;

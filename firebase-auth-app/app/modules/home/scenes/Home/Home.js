@@ -39,6 +39,13 @@ class Home extends React.Component {
 
         return (
             <View style={styles.container}>
+
+              <Text style={styles.homeText}>Welcome to All About Books! An App that allows you to get quick information about any book your heart desires. Click on the link below to get started. Happy Searching!</Text>
+
+            <TouchableOpacity onPress ={this.goToSearch}>
+            <Text style={styles.searchLink}>Go to Search</Text>
+            </TouchableOpacity>
+
                 <Button
                     raised
                     borderRadius={4}
@@ -47,9 +54,8 @@ class Home extends React.Component {
                     style={styles.logoutButton}
                     textStyle={styles.buttonText}
                     onPress={this.onSignOut}/>
-            <TouchableOpacity style = {{ margin: 128 }} onPress ={this.goToSearch}>
-            <Text>Go to Search</Text>
-            </TouchableOpacity>
+
+
             </View>
         );
     }

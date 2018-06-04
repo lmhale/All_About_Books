@@ -8,8 +8,8 @@ export default class extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.wrapper}>
-                    <Image style={styles.image} source={{uri: ""}}/>
-                    <Text style={styles.title}>Quotes</Text>
+
+                    <Text style={styles.title}>All About Books</Text>
                 </View>
                 <View style={styles.activityIndicatorContainer}>
                     <ActivityIndicator animating={true}/>

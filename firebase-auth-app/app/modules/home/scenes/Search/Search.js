@@ -12,7 +12,7 @@ import {
 
 } from 'react-native';
 
-import Gallery from './Gallery.js';
+
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 
 import { WebBrowser } from 'expo';
@@ -112,13 +112,13 @@ handleInput = (text) => {
 
      <View style={styles.form}>
 
-     <TextInput style={styles.field} type="text" placeholder="Search for a book" onChange={this.handleChange}
+     <TextInput style={styles.input} type="text" placeholder="Search for a book" onChange={this.handleChange}
     onChangeText = {this.handleInput} onKeyPress={this.handleKeyPress} value={this.state.query} name="query"/>
 
     <TouchableOpacity
                style={styles.button}
                onPress ={this.search}>
-               <Text style={styles.buttonText}> Submit </Text>
+               <Text style={styles.buttonText}> Search </Text>
             </TouchableOpacity>
 
  <BookList books={this.state.theBooks} onItemPress={this.setCurrentBook}/>
@@ -135,49 +135,57 @@ handleInput = (text) => {
 
 
 const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      justifyContent: 'center',
-      textAlign: 'center',
-      backgroundColor: 'grey',
+  input: {
+    height:40,
+    marginHorizontal:12,
+    borderBottomWidth: 1,
 
-    },
+  },
+  // container: {
+
+   //    flex: 1,
+   //    justifyContent: 'center',
+   //    textAlign: 'center',
+   //    backgroundColor: 'grey',
+
+   //  },
     form: {
-
-      justifyContent:"center",
-      alignItems:"center"
+    backgroundColor: 'white',
     },
     field: {
 
       width:200,
-      height:40,
-      borderBottomColor:'#83B5C7',
+   //    height:40,
+   //    borderBottomColor:'#83B5C7',
       borderBottomWidth:2,
-      borderTopColor:'#83B5C7',
-      borderTopWidth:2,
-      borderLeftColor:'#83B5C7',
-      borderLeftWidth:2,
-      borderRightColor:'#83B5C7',
-      borderRightWidth:2,
-      textAlign:'center',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color:'white',
+   //    borderTopColor:'#83B5C7',
+   //    borderTopWidth:2,
+   //    borderLeftColor:'#83B5C7',
+   //    borderLeftWidth:2,
+   //    borderRightColor:'#83B5C7',
+   //    borderRightWidth:2,
+   //    textAlign:'center',
     },
 
-    button: {
-    backgroundColor:'green',
-    width:58,
-    height:20,
 
-    textAlign:'center',
-    borderRadius:10,
-     padding:2,
-    },
     buttonText: {
-     color: 'white',
-
+    backgroundColor: 'black',
+    color: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign:'center',
+    padding: 8,
+    margin:10,
+    marginLeft:150,
+    width: 90,
+    borderRadius:20,
     },
-    image: {
-   width: '100%',
-   height: 150,
-}
+   //  image: {
+   // width: '100%',
+//    height: 150,
+// }
 
 });

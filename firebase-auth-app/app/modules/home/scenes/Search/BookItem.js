@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import {
 
   StyleSheet,
@@ -6,7 +7,8 @@ import {
   FlatList,
   Image,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import Proptypes from 'prop-types';
 
@@ -22,12 +24,14 @@ class BookItem extends React.Component {
   render() {
     const book = this.props.book;
     return (
-      <TouchableOpacity style={styles.book} onPress={this.handlePress}>
+
+      <TouchableOpacity style={styles.bookBox} onPress={this.handlePress}>
 
           <View style={styles.info}>
-           <Text>{book.volumeInfo.title}</Text>
-            <Text>{book.volumeInfo.authors}</Text>
-            <Text>{book.volumeInfo.averageRating}</Text>
+           <Text style={styles.title}>{book.volumeInfo.title}</Text>
+            <Text style={styles.author}>Author: {book.volumeInfo.authors}</Text>
+            <Text style={styles.rating}>Rating: {book.volumeInfo.averageRating}</Text>
+
           </View>
 
       </TouchableOpacity>
@@ -37,37 +41,47 @@ class BookItem extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  book: {
+  bookBox: {
     marginHorizontal: 12,
     marginTop: 12,
-    textAlign:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
   image: {
-    width: '100%',
-    height: 150,
-    backgroundColor: '#ccc',
+    width: '30%',
+    height: 115,
+
+  },
+  author: {
+   fontSize:12,
+   color: '#bc8f8f',
+  },
+  rating: {
+    fontSize:12,
+   color: '#bc8f8f',
   },
   info: {
     padding: 10,
-    backgroundColor: '#fff',
-    borderColor: '#bbb',
-    borderWidth: 1,
-    borderTopWidth: 0,
-    width:250,
-    height:200,
-
+    backgroundColor: '#F5F5F5',
+    width:'55%',
+    height:225,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 5,
+    color: '#bc8f8f',
   },
-  footer: {
-    flexDirection: 'row',
-  },
-  cause: {
-    flex: 2,
-  },
+
+  // footer: {
+  //   flexDirection: 'row',
+  // },
+  // cause: {
+  //   flex: 2,
+  // },
 
 });
 

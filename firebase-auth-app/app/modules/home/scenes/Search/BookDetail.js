@@ -5,7 +5,8 @@ import {
   FlatList,
   Image,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import Proptypes from 'prop-types';
 import ajax from './ajax';
@@ -31,17 +32,17 @@ class BookDetail extends React.Component {
     return (
       <View style={styles.book} >
       <TouchableOpacity onPress={this.props.onBack}>
-      <Text> Back </Text>
+      <Text style={styles.back}> Back </Text>
       </TouchableOpacity>
       <View>
 <Image style={styles.image} source={{uri: book.volumeInfo.imageLinks.thumbnail}} />
       </View>
-         <View style={styles.info}>
-           <Text>{book.volumeInfo.title}</Text>
-           <Text>{book.volumeInfo.description}</Text>
+         <ScrollView style={styles.info}>
+           <Text style={styles.title}>{book.volumeInfo.title}</Text>
+           <Text style={styles.description}>{book.volumeInfo.description}</Text>
 
 
-          </View>
+          </ScrollView>
         {book.imageLinks && (
       <View>
 
@@ -58,16 +59,30 @@ class BookDetail extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  book: {
-    marginHorizontal: 12,
-    marginTop: 12,
-    textAlign:'center',
+  title: {
+    fontSize: 16,
+    padding: 10,
+    fontWeight: 'bold',
+
   },
+  back: {
+   color:'#0000EE',
+  },
+  // book: {
+  //   marginHorizontal: 12,
+  //   marginTop: 12,
+  //   textAlign:'center',
+  // },
   image: {
     width: 120,
     height: 150,
     backgroundColor: '#ccc',
-    margin:20,
+    marginLeft:140,
+    marginBottom:15,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+
   },
   info: {
     padding: 10,
@@ -75,21 +90,28 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     borderWidth: 1,
     borderTopWidth: 0,
-    width:'100%',
+    width:'90%',
     height:350,
+    marginLeft:20,
 
   },
+  description: {
+      // textAlign:'center',
+
+  },
+
   title: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 5,
+    textAlign:'center',
   },
-  footer: {
-    flexDirection: 'row',
-  },
-  cause: {
-    flex: 2,
-  },
+  // footer: {
+  //   flexDirection: 'row',
+  // },
+  // cause: {
+  //   flex: 2,
+  // },
 
 });
 

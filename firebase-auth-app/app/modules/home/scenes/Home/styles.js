@@ -9,7 +9,31 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
 
-        backgroundColor:"#00cc99",
+        backgroundColor:'#E16666',
+    },
+
+    homeBox:{
+     marginTop:200,
+    },
+    homeText: {
+   fontSize:18,
+   color:'white',
+   marginTop:150,
+   marginLeft:10,
+
+         },
+    happyText: {
+      fontSize:18,
+      color:'white',
+    },
+
+    searchLink: {
+     fontSize:18,
+      color:'white',
+      marginLeft:130,
+      marginTop:12,
+      fontWeight:'bold',
+
     },
 
     bottomContainer:{
@@ -32,8 +56,9 @@ const styles = StyleSheet.create({
     },
 
     logoutButton: {
-      marginTop:150,
-      width:70,
+      marginTop:300,
+      marginLeft:40,
+      width:300,
     },
 });
 
